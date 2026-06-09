@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+@theme {
+  /* Custom Brand Colors Setup */
+  --color-brand-dark: #0f172a;     /* Deep slate background */
+  --color-brand-surface: #1e293b;  /* Card background */
+  --color-brand-accent: #38bdf8;   /* Glowing electric blue */
+  --color-brand-muted: #94a3b8;    /* Soft gray text */
+
+  /* Custom Glow Animation Setup */
+  --animate-glow: glow 2s ease-in-out infinite alternate;
+
+  @keyframes glow {
+    0% { box-shadow: 0 0 5px rgba(56, 189, 248, 0.2); }
+    100% { box-shadow: 0 0 20px rgba(56, 189, 248, 0.6); }
+  }
+}
+
+/* Global Styles (Optional but good for dark mode base) */
+body {
+  background-color: var(--color-brand-dark);
+  color: #ffffff;
+  font-family: sans-serif;
+}
