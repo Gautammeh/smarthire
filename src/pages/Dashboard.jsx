@@ -31,20 +31,30 @@ export default function Dashboard() {
     setLoading(true)
 
     const { data: { user } } = await supabase.auth.getUser()
-    if (!user) return
+    if (!user) {
+      setLoading(false)
+      return
+    }
 
-    const { data } = await supabase
-      .from("jobs")
-      .select("*")
-      .eq("user_id", user.id)
+    const { data, error } = await supabase
+  .from("jobs")
+  .select("*")
+  .eq("user_id", user.id)
+
+if (error) {
+  setLoading(false)
+  return
+}
 
     setJobs(data || [])
-    setLoading(false)
+    
   }
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    fetchJobs()
+    const getData = async () => {
+      await fetchJobs()
+    }
+    getData()
   }, [])
 
   // ADD JOB
